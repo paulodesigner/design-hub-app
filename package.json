@@ -1,0 +1,55 @@
+{
+  "name": "design-hub",
+  "version": "0.1.0",
+  "description": "Design Hub — os agentes do Hub de Design em um app de chat, sem terminal",
+  "main": "main.js",
+  "author": "Educbank Design",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "empacotar": "electron-builder --mac --dir",
+    "distribuir": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.educbank.designhub",
+    "productName": "Design Hub",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/@anthropic-ai/claude-agent-sdk/**",
+      "node_modules/figma-developer-mcp/**",
+      "node_modules/.bin/figma-developer-mcp"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "identity": null
+    },
+    "dmg": {
+      "title": "Design Hub"
+    }
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.220",
+    "figma-developer-mcp": "^0.13.2"
+  },
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3"
+  }
+}
